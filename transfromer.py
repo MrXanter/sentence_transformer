@@ -1,4 +1,3 @@
-from ast import arg
 from numpy import argpartition, argsort, inf
 from sentence_transformers import SentenceTransformer
 from scipy.special import softmax
