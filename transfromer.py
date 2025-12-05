@@ -26,13 +26,14 @@ print(embeddings.shape)
 similarities = model.similarity(embeddings, embeddings)
 similarities = softmax(similarities)
 
-len_sentenses = len(sentences)
-k = 0
-row = similarities[k]
-row[k] = -inf
-top3_idx = argpartition(row, -3)[-3:]
-top3_idx_sorted = top3_idx[argsort(row[top3_idx])[::-1]]
-similar_sentences = [sentences[i] for i in top3_idx_sorted]
-print (f"Top 3 similar sentences to: '{sentences[k]}'")
-for sentence in similar_sentences:
-    print(f"  {sentence}")
+# 4. For each sentence, print the top 3 most similar sentences
+for k in range(len(sentences)):
+    row = similarities[k]
+    row[k] = -inf
+    top3_idx = argpartition(row, -3)[-3:]
+    top3_idx_sorted = top3_idx[argsort(row[top3_idx])[::-1]]
+    similar_sentences = [sentences[i] for i in top3_idx_sorted]
+    print("\n")
+    print (f"Top 3 similar sentences to: '{sentences[k]}'")
+    for sentence in similar_sentences:
+        print(f"  '{sentence}'")
